@@ -12,7 +12,6 @@ git.branchLocal(async (_commands, output) => {
       type: 'list',
       name: 'branch',
       message: 'Choose branch:',
-      default: '3',
       choices: output.all,
       default: output.current,
     },
