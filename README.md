@@ -1,6 +1,10 @@
 # Git Branch Selector
 
-## A CLI tool for choosing local branches.
+## A CLI tool for choosing local branches in yur terminal.
+
+### Installation
+
+`npm i -g git-branch-selector`
 
 ### Usage:
 
