@@ -2,14 +2,14 @@ module.exports = {
   env: {
     node: true,
     commonjs: true,
-    es6: true
+    es6: true,
   },
   extends: ['eslint:recommended', 'prettier'],
   globals: {
-    process: 'readonly'
+    process: 'readonly',
   },
   parserOptions: {
-    ecmaVersion: 2018
+    ecmaVersion: 2018,
   },
   plugins: ['prettier'],
   rules: {
@@ -20,8 +20,8 @@ module.exports = {
         semi: false,
         useTabs: false,
         tabWidth: 2,
-        printWidth: 100
-      }
-    ]
-  }
+        printWidth: 100,
+      },
+    ],
+  },
 }
