@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const simpleGit = require('simple-git')
 const inquirer = require('inquirer')
 const { exec } = require('child_process')
