@@ -1,5 +1,5 @@
 {
-  "name": "git-test",
+  "name": "git-branch-selector",
   "version": "0.0.1",
   "description": "",
   "main": "./src/index.js",
