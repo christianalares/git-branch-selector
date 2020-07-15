@@ -1,6 +1,6 @@
 # Git Branch Selector
 
-## A CLI tool for choosing local branches in yur terminal.
+## A CLI tool for choosing local branches in your terminal.
 
 ### Installation
 
