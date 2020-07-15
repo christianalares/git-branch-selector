@@ -1,6 +1,6 @@
 {
   "name": "git-branch-selector",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A CLI tool for choosing local branches in yur terminal",
   "main": "./src/index.js",
   "bin": {
