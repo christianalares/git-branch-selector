@@ -1,14 +1,28 @@
 {
   "name": "git-test",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon index.js"
+  "main": "./src/index.js",
+  "bin": {
+    "ggb": "./src/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "lint": "eslint '**/*.js' --ignore-path .gitignore",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christianalares/git-branch-selector"
+  },
+  "homepage": "https://github.com/christianalares/git-branch-selector",
+  "keywords": [
+    "git",
+    "git checkout",
+    "git branch selector"
+  ],
+  "author": "Christian Alares",
+  "license": "MIT",
   "dependencies": {
     "inquirer": "^7.3.2",
     "simple-git": "^2.12.0"
