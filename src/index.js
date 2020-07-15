@@ -6,15 +6,27 @@ const { exec } = require('child_process')
 
 const thisFolder = process.cwd()
 
+const handleKeyDown = (_ch, key) => {
+  if (!key) {
+    return
+  }
+
+  if (key.name === 'escape' || (key.ctrl && key.name === 'c')) {
+    process.exit()
+  }
+}
+
 const git = simpleGit({
   baseDir: thisFolder,
 })
 
 git.branchLocal(async (_commands, output) => {
   if (!output) {
-    console.log(`😕 This folder (${thisFolder}) is not a git repository.`)
+    console.log(`😕 This folder ${chalk.italic(`(${thisFolder})`)} is not a git repository.`)
     process.exit(0)
   }
+
+  process.stdin.on('keypress', handleKeyDown)
 
   const answer = await inquirer.prompt([
     {
