@@ -24,6 +24,7 @@
   "author": "Christian Alares",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^4.1.0",
     "inquirer": "^7.3.2",
     "simple-git": "^2.12.0"
   },

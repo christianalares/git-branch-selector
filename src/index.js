@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const simpleGit = require('simple-git')
 const inquirer = require('inquirer')
+const chalk = require('chalk')
 const { exec } = require('child_process')
 
 const thisFolder = process.cwd()
@@ -20,8 +21,10 @@ git.branchLocal(async (_commands, output) => {
       type: 'list',
       name: 'branch',
       message: 'Choose branch:',
-      choices: output.all.map(b => b),
-      default: output.current,
+      choices: output.all.map(b =>
+        b === output.current ? `${b} ${chalk.italic('(current)')}` : b
+      ),
+      default: output.all.indexOf(output.current),
     },
   ])
 
