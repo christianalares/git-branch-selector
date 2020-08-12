@@ -33,9 +33,11 @@ git.branchLocal(async (_commands, output) => {
       type: 'list',
       name: 'branch',
       message: 'Choose branch:',
-      choices: output.all.map(b =>
-        b === output.current ? `${b} ${chalk.italic('(current)')}` : b
-      ),
+      choices: output.all.map(branch => ({
+        name: branch === output.current ? `${branch} ${chalk.italic('(current)')}` : branch,
+        value: branch,
+        short: branch,
+      })),
       default: output.all.indexOf(output.current),
     },
   ])
