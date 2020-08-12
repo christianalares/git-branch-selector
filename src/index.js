@@ -11,7 +11,7 @@ const handleKeyDown = (_ch, key) => {
     return
   }
 
-  if (key.name === 'escape' || (key.ctrl && key.name === 'c')) {
+  if (key.name === 'escape' || key.name === 'q' || (key.ctrl && key.name === 'c')) {
     process.exit()
   }
 }
