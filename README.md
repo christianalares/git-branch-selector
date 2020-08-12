@@ -2,6 +2,10 @@
 
 ## A CLI tool for choosing local branches in your terminal.
 
+### Changelog
+
+See the changelog [here](CHANGELOG.md).
+
 ### Installation
 
 `npm i -g git-branch-selector`
