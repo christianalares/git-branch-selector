@@ -1,6 +1,6 @@
 # Git Branch Selector - Changelog
 
-### **1.0.5:**
+### **1.1.5:**
 
 - Bugfix: Choice is not preservings its value instead of the value beeing overwritten with the title
 - Feature: Add indicies to the list
