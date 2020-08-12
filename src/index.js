@@ -37,6 +37,7 @@ git.branchLocal(async (_commands, output) => {
         b === output.current ? `${b} ${chalk.italic('(current)')}` : b
       ),
       default: output.all.indexOf(output.current),
+      loop: false,
     },
   ])
 
