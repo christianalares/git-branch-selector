@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-const simpleGit = require('simple-git')
-const inquirer = require('inquirer')
-const chalk = require('chalk')
-const { exec } = require('child_process')
+import simpleGit from 'simple-git'
+import inquirer from 'inquirer'
+import chalk from 'chalk'
+import { exec } from 'child_process'
 
 const thisFolder = process.cwd()
 
