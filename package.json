@@ -9,7 +9,6 @@
   },
   "scripts": {
     "lint": "eslint '**/*.js' --ignore-path .gitignore",
-    "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
   "repository": {
