@@ -1,5 +1,13 @@
 # Git Branch Selector - Changelog
 
+### **1.2.0:**
+
+- Feature: Increase the list to 20 items to prevent scrolling in the list of branches
+- Refactor: Use ES Modules instead of Common JS imports
+- Other: Upgrade packages
+
+---
+
 ### **1.1.5:**
 
 - Bugfix: Choice is now keeping its value instead of the value beeing overwritten with the title
