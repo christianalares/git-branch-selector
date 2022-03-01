@@ -32,11 +32,10 @@ git.branchLocal(async (_commands, output) => {
     {
       type: 'list',
       name: 'branch',
+      pageSize: 20,
       message: 'Choose branch:',
       choices: output.all.map((branch, i) => ({
-        name: `${i + 1}) ${
-          branch === output.current ? `${branch} ${chalk.italic('(current)')}` : branch
-        }`,
+        name: `${i + 1}) ${branch === output.current ? `${branch} ${chalk.italic('(current)')}` : branch}`,
         value: branch,
         short: branch,
       })),
@@ -47,7 +46,7 @@ git.branchLocal(async (_commands, output) => {
   exec(`git checkout ${answer.branch}`, (err, stdout, stderr) => {
     if (err) {
       console.log(stderr)
-      process.exit(0)
+      process.exit(1)
     }
 
     console.log(stdout, stderr)
