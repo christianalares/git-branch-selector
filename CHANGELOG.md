@@ -1,5 +1,10 @@
 # Git Branch Selector - Changelog
 
+### **1.3.0:**
+
+- Feature: Add possibility to fuzzy search branches
+
+---
 ### **1.2.0:**
 
 - Feature: Increase the list to 20 items to prevent scrolling in the list of branches
