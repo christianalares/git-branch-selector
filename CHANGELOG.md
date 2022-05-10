@@ -1,5 +1,10 @@
 # Git Branch Selector - Changelog
 
+### **1.3.1:**
+
+- Hotfix: Fix crash when selecting a branch
+
+---
 ### **1.3.0:**
 
 - Feature: Add possibility to fuzzy search branches
