@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 import simpleGit from 'simple-git'
 import inquirer from 'inquirer'
+import inquirerPrompt from 'inquirer-autocomplete-prompt'
+import fuzzy from 'fuzzy'
 import chalk from 'chalk'
 import { exec } from 'child_process'
+
+inquirer.registerPrompt('autocomplete', inquirerPrompt)
 
 const thisFolder = process.cwd()
 
@@ -11,7 +15,7 @@ const handleKeyDown = (_ch, key) => {
     return
   }
 
-  if (key.name === 'escape' || key.name === 'q' || (key.ctrl && key.name === 'c')) {
+  if (key.name === 'escape' || (key.ctrl && key.name === 'c')) {
     process.exit()
   }
 }
@@ -28,18 +32,20 @@ git.branchLocal(async (_commands, output) => {
 
   process.stdin.on('keypress', handleKeyDown)
 
+  const searchBranch = (answers, input = '') => {
+    return new Promise(resolve => {
+      resolve(fuzzy.filter(input, output.all).map((el, i) => `${i + 1}) ${el.original}`))
+    })
+  }
+
   const answer = await inquirer.prompt([
     {
-      type: 'list',
+      type: 'autocomplete',
       name: 'branch',
+      source: searchBranch,
       pageSize: 20,
       message: 'Choose branch:',
-      choices: output.all.map((branch, i) => ({
-        name: `${i + 1}) ${branch === output.current ? `${branch} ${chalk.italic('(current)')}` : branch}`,
-        value: branch,
-        short: branch,
-      })),
-      default: output.all.indexOf(output.current),
+      default: '',
     },
   ])
 
