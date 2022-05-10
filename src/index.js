@@ -31,10 +31,15 @@ git.branchLocal(async (_commands, output) => {
   }
 
   process.stdin.on('keypress', handleKeyDown)
-
   const searchBranch = (answers, input = '') => {
     return new Promise(resolve => {
-      resolve(fuzzy.filter(input, output.all).map((el, i) => `${i + 1}) ${el.original}`))
+      resolve(
+        fuzzy.filter(input, output.all).map((el, i) => ({
+          name: `${i + 1}) ${output.current === el.original ? `${el.original} 👈` : el.original}`,
+          value: el.original,
+          short: el.original,
+        }))
+      )
     })
   }
 
@@ -45,7 +50,7 @@ git.branchLocal(async (_commands, output) => {
       source: searchBranch,
       pageSize: 20,
       message: 'Choose branch:',
-      default: '',
+      default: output.current,
     },
   ])
 
