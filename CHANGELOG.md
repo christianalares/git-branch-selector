@@ -1,5 +1,9 @@
 # Git Branch Selector - Changelog
 
+### **1.3.2:**
+
+- Feature: Add support for passing an optional search term e.g. `ggb devel`. This might match your list of branches containing the term "devel". If the number of search hits is one, it will change to that branch instantly. If the results are more than one, it will show a filtered list of those matches.
+
 ### **1.3.1:**
 
 - Hotfix: Fix crash when selecting a branch
