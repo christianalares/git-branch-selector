@@ -10,6 +10,18 @@ inquirer.registerPrompt('autocomplete', inquirerPrompt)
 
 const thisFolder = process.cwd()
 
+const checkoutBranch = branchName => {
+  return new Promise((resolve, reject) => {
+    exec(`git checkout ${branchName}`, (err, stdout, stderr) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(stderr)
+      }
+    })
+  })
+}
+
 const handleKeyDown = (_ch, key) => {
   if (!key) {
     return
@@ -24,14 +36,31 @@ const git = simpleGit({
   baseDir: thisFolder,
 })
 
+const [, , initialSearchTermArg] = process.argv
+
 git.branchLocal(async (_commands, output) => {
   if (!output) {
     console.log(`😕 This folder ${chalk.italic(`(${thisFolder})`)} is not a git repository.`)
-    process.exit(0)
+    process.exit(1)
+  }
+
+  if (initialSearchTermArg) {
+    const initialResults = fuzzy.filter(initialSearchTermArg, output.all).map(searchHit => searchHit.string)
+
+    if (initialResults.length === 1) {
+      try {
+        const checkoutCommandOutput = await checkoutBranch(initialResults[0])
+        console.log(checkoutCommandOutput)
+        process.exit(0)
+      } catch (error) {
+        console.error(error)
+        process.exit(1)
+      }
+    }
   }
 
   process.stdin.on('keypress', handleKeyDown)
-  const searchBranch = (answers, input = '') => {
+  const searchBranch = (answers, input = initialSearchTermArg ?? '') => {
     return new Promise(resolve => {
       resolve(
         fuzzy.filter(input, output.all).map((el, i) => ({
@@ -54,13 +83,12 @@ git.branchLocal(async (_commands, output) => {
     },
   ])
 
-  exec(`git checkout ${answer.branch}`, (err, stdout, stderr) => {
-    if (err) {
-      console.log(stderr)
-      process.exit(1)
-    }
-
-    console.log(stdout, stderr)
+  try {
+    const checkoutCommandOutput = await checkoutBranch(answer.branch)
+    console.log(checkoutCommandOutput)
     process.exit(0)
-  })
+  } catch (error) {
+    console.error(error)
+    process.exit(1)
+  }
 })
